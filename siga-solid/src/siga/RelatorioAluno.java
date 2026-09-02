@@ -16,6 +16,12 @@ import java.util.List;
  * e separá-las em classes distintas (ex.: RelatorioFormatador, RelatorioRepositorio,
  * ServicoEmail), cada uma com um único motivo para mudar.
  */
+
+/*A classe RelatorioAluno viola o Princípio da Responsabilidade Única (SRP) porque acumula três responsabilidades distintas: 
+formatação do relatório, persistência (gravação em arquivo) e comunicação (envio por e-mail). 
+se subitamente precisarmos alterar algum tipo de funcionamento
+da classe, podemos acabar "quebrando" ela por completo.*/
+
 public class RelatorioAluno {
 
     // Responsabilidade (a): FORMATAÇÃO
@@ -24,11 +30,11 @@ public class RelatorioAluno {
         sb.append("=== Relatório de Alunos ===\n");
         for (Aluno aluno : alunos) {
             sb.append(aluno.getMatricula())
-              .append(" - ")
-              .append(aluno.getNome())
-              .append(" - média: ")
-              .append(aluno.getMedia())
-              .append("\n");
+                .append(" - ")
+                .append(aluno.getNome())
+                .append(" - média: ")
+                .append(aluno.getMedia())
+                .append("\n");
         }
         return sb.toString();
     }
