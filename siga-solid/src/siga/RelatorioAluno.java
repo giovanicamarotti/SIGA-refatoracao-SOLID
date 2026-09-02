@@ -17,14 +17,13 @@ import java.util.List;
  * ServicoEmail), cada uma com um único motivo para mudar.
  */
 
-/*A classe RelatorioAluno viola o Princípio da Responsabilidade Única (SRP) porque acumula três responsabilidades distintas: 
+/*Gio: A classe RelatorioAluno viola o Princípio da Responsabilidade Única (SRP) porque acumula três responsabilidades distintas: 
 formatação do relatório, persistência (gravação em arquivo) e comunicação (envio por e-mail). 
 se subitamente precisarmos alterar algum tipo de funcionamento
 da classe, podemos acabar "quebrando" ela por completo.*/
 
-public class RelatorioAluno {
-
-    // Responsabilidade (a): FORMATAÇÃO
+public class FormatacaoRelatorio {
+    // Responsabilidade (a): FORMATAÇÃO - CLASSE SEPARADA CRIADA
     public String formatar(List<Aluno> alunos) {
         StringBuilder sb = new StringBuilder();
         sb.append("=== Relatório de Alunos ===\n");
@@ -38,14 +37,20 @@ public class RelatorioAluno {
         }
         return sb.toString();
     }
+}
 
-    // Responsabilidade (b): PERSISTÊNCIA (gravar em arquivo)
+
+public class PersistenciaRelatorio {
+    // Responsabilidade (b): PERSISTÊNCIA (gravar em arquivo) - CLASSE SEPARADA CRIADA
     public void salvarEmArquivo(String conteudo, String caminho) {
         // Simulação de gravação em disco (a implementação real não importa para a atividade).
         System.out.println("[disco] Gravando relatório em: " + caminho);
         System.out.println(conteudo);
     }
+}
 
+
+public class ComunicacaoRelatorio {
     // Responsabilidade (c): COMUNICAÇÃO (enviar por e-mail)
     public void enviarPorEmail(String conteudo, String destinatario) {
         // Simulação de envio de e-mail.
@@ -53,3 +58,4 @@ public class RelatorioAluno {
         System.out.println(conteudo);
     }
 }
+
