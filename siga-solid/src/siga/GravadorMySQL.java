@@ -13,7 +13,7 @@ package siga;
  */
 public class GravadorMySQL implements SaveExterno {
 
-    public void salvar(String dados) {
+    public void gravar(String dados) {
         // Simulação de gravação em banco MySQL.
         System.out.println("[MySQL] Gravando: " + dados);
     }
