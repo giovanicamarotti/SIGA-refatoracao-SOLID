@@ -26,12 +26,14 @@ public class Matricula {
     private String tipoDesconto;   // "NENHUM", "BOLSISTA", "CONVENIO", "FUNCIONARIO"...
 
     // Violação do DIP: dependência direta da classe concreta.
-    private GravadorMySQL gravador = new GravadorMySQL();
+    //Gio: Substituído pela interface do gravador e adicionado a injeção de dependência
+    private SaveExterno gravador;
 
-    public Matricula(Aluno aluno, double valorBase, String tipoDesconto) {
+    public Matricula(Aluno aluno, double valorBase, String tipoDesconto, SaveExterno gravador) {
         this.aluno = aluno;
         this.valorBase = valorBase;
         this.tipoDesconto = tipoDesconto;
+        this.gravador = gravador;
     }
 
     // Violação do OCP: um novo desconto = mais um ramo condicional aqui.
